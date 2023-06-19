@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "345455774454",
+    "project_id": "memorymateauth1",
+    "storage_bucket": "memorymateauth1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345455774454:android:74ba253cefcb01eab33ad7",
+        "android_client_info": {
+          "package_name": "com.example.hello_world"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345455774454-0apjhqlvnhes04d40tm2oi169ivbjtb2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhfk2whQ17Y9Y5uANr16--5PR0HIcLClQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345455774454-0apjhqlvnhes04d40tm2oi169ivbjtb2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
