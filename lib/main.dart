@@ -3,7 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hello_world/Splash1.dart';
 import 'package:get/get.dart';
-
+import 'package:hello_world/constants/routes.dart';
+import 'package:hello_world/views/login_page.dart';
+import 'package:hello_world/views/sign_up.dart';
+import 'package:hello_world/views/verification_page.dart';
+import 'dart:developer' as devtools show log;
 import 'firebase_options.dart';
 
 void main() {
@@ -23,6 +27,12 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const HomePage(),
+      routes: {
+        loginRoute: (context) => const LoginPage(),
+        signUpRouter: (context) => const sign_up(),
+        mainPageRoute: (context) => const MainPage(),
+        '/verify/': (context) => const VerifyEmailView()
+      },
     );
   }
 }
@@ -32,29 +42,95 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Home'),
-          backgroundColor: const Color.fromARGB(255, 171, 50, 50),
+    return FutureBuilder(
+        future: Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform,
         ),
-        body: FutureBuilder(
-            future: Firebase.initializeApp(
-              options: DefaultFirebaseOptions.currentPlatform,
-            ),
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.done:
-                  final user = print(FirebaseAuth.instance.currentUser);
-                  final emailVerified = user?.emailVerified ?? false;
-                  if (emailVerified) {
-                    print("You are a verified user");
-                  } else {
-                    (print("You need to verify your email"));
-                  }
-                  return const Text('done');
-                default:
-                  return const Text('Loading...');
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.done:
+              final user = FirebaseAuth.instance.currentUser;
+              if (user != null) {
+                if (user.emailVerified) {
+                  return const MainPage();
+                } else {
+                  return const VerifyEmailView();
+                }
+              } else {
+                return const LoginPage();
               }
-            }));
+            default:
+              return const CircularProgressIndicator();
+          }
+        });
   }
+}
+
+enum MenuAction { logout }
+
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Main UI'),
+        actions: [
+          PopupMenuButton<MenuAction>(
+            onSelected: (value) async {
+              switch (value) {
+                case MenuAction.logout:
+                  final shouldLogout = await showLogOutDialogue(context);
+                  devtools.log(shouldLogout.toString());
+                  if (shouldLogout) {
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.of(context)
+                        .pushNamedAndRemoveUntil(loginRoute, (_) => false);
+                  }
+                  break;
+              }
+            },
+            itemBuilder: (context) {
+              return const [
+                PopupMenuItem<MenuAction>(
+                  value: MenuAction.logout,
+                  child: Text('Log out'),
+                )
+              ];
+            },
+          )
+        ],
+      ),
+      body: const Text('Hello! Welcome  to MemoryMate'),
+    );
+  }
+}
+
+Future<bool> showLogOutDialogue(BuildContext context) {
+  return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Sign Out'),
+          content: const Text('Are you sure you want to log out?'),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: const Text('Cancel')),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+                child: const Text('Log out'))
+          ],
+        );
+      }).then((value) => value ?? false);
 }

@@ -27,14 +27,14 @@ class _Splash1State extends State<Splash1> {
                 Container(
                     width: w,
                     height: h * 0.3,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage("img/logo.png"),
                             fit: BoxFit.cover))),
                 Container(
                     width: w * 0.9,
                     height: h * 0.3,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage("img/Doodles_Reading.png")))),
                 const Column(
@@ -57,15 +57,15 @@ class _Splash1State extends State<Splash1> {
                 ElevatedButton(
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LoginPage()));
+                          MaterialPageRoute(builder: (context) => const LoginPage()));
                     },
-                    child: Text('LOGIN')),
+                    child: const Text('LOGIN')),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => sign_up()));
+                        MaterialPageRoute(builder: (context) => const sign_up()));
                   },
-                  child: Text('SIGN UP'),
+                  child: const Text('SIGN UP'),
                 )
               ]),
         ));
