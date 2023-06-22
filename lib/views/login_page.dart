@@ -33,34 +33,81 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(children: [
-            TextField(
+      body:Padding(
+        padding: const EdgeInsets.all(10),
+        child: ListView(
+          children: <Widget>[
+            Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
+                child: const Text(
+                  'MemoryMate',
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 30),
+                )),
+            Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
+                child: const Text(
+                  'Sign in',
+                  style: TextStyle(fontSize: 20),
+                )),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextField(
               controller: _email,
               enableSuggestions: false,
               autocorrect: false,
               keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                  icon: Icon(Icons.mail), hintText: "Email"),
+              
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Email',
+                ),
+              ),
             ),
-            TextField(
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+              child: TextField(
               controller: _password,
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
-              decoration: const InputDecoration(
-                  icon: Icon(Icons.lock), hintText: "Password"),
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Password',
+                ),
+              ),
             ),
-            ElevatedButton(
-                onPressed: () async {
+            TextButton(
+              onPressed: () {
+                //forgot password screen
+                 Navigator.of(context).pushNamedAndRemoveUntil(
+                          resetPassRout, (route) => false);
+              },
+              child: const Text('Forgot Password',),
+            ),
+            Container(
+                height: 50,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: ElevatedButton(
+                  child: const Text('Login'),
+                  onPressed: () async {
                   final email = _email.text;
                   final password = _password.text;
                   try {
                     await FirebaseAuth.instance.signInWithEmailAndPassword(
                         email: email, password: password);
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        mainPageRoute, (route) => false);
+                    final user = FirebaseAuth.instance.currentUser;
+                    if (user?.emailVerified ?? false) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          mainPageRoute, (route) => false);
+                    } else {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          verifyEmailRoute, (route) => false);
+                    }
                   } on FirebaseAuthException catch (e) {
                     if (e.code == 'user-not-found') {
                       await showErrorDialog(
@@ -81,23 +128,36 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     }
                   } catch (e) {
-                     await showErrorDialog(
-                        context,
-                        e.toString(),
-                      );
-                  }
-                },
-                child: const Text('LOG IN')),
-            TextButton(
-              onPressed: () {
+                    await showErrorDialog(
+                      context,
+                      e.toString(),
+                    );
+                  }}
+                )
+            ),
+            Row(
+              children: <Widget>[
+                const Text('Does not have account?'),
+                TextButton(
+                  child: const Text(
+                    'Sign in',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    //signup screen
+                    
                 Navigator.of(context).pushNamedAndRemoveUntil(
                   signUpRouter,
                   (route) => false,
                 );
-              },
-              child: const Text("Don't have an account yet? Register here!"),
+                  },
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.center,
             ),
-          ])),
+          ],
+        ))
     );
   }
 }
+

@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hello_world/Splash1.dart';
 import 'package:get/get.dart';
 import 'package:hello_world/constants/routes.dart';
+import 'package:hello_world/splash1.dart';
 import 'package:hello_world/views/login_page.dart';
+import 'package:hello_world/views/resetPassword.dart';
 import 'package:hello_world/views/sign_up.dart';
 import 'package:hello_world/views/verification_page.dart';
 import 'dart:developer' as devtools show log;
@@ -12,6 +13,7 @@ import 'firebase_options.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -21,17 +23,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromARGB(255, 255, 255, 255)),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const Splash1(),
       routes: {
         loginRoute: (context) => const LoginPage(),
         signUpRouter: (context) => const sign_up(),
         mainPageRoute: (context) => const MainPage(),
-        '/verify/': (context) => const VerifyEmailView()
+        verifyEmailRoute: (context) => const VerifyEmailView(),
+        resetPassRout: (context) => const ResetPassword()
       },
     );
   }
@@ -90,6 +94,7 @@ class _MainPageState extends State<MainPage> {
                   devtools.log(shouldLogout.toString());
                   if (shouldLogout) {
                     await FirebaseAuth.instance.signOut();
+                    // ignore: use_build_context_synchronously
                     Navigator.of(context)
                         .pushNamedAndRemoveUntil(loginRoute, (_) => false);
                   }

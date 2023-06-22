@@ -1,7 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hello_world/main.dart';
 import 'package:hello_world/views/login_page.dart';
 import 'package:hello_world/views/sign_up.dart';
 
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
+}
 
 class Splash1 extends StatefulWidget {
   const Splash1({super.key});
@@ -19,9 +26,10 @@ class _Splash1State extends State<Splash1> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          // padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(10),
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
@@ -54,19 +62,36 @@ class _Splash1State extends State<Splash1> {
                         style: TextStyle(fontSize: 15, color: Colors.grey),
                       )
                     ]),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const LoginPage()));
-                    },
-                    child: const Text('LOGIN')),
-                ElevatedButton(
+                const SizedBox(height: 20),
+                Container(
+                height: 50,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: ElevatedButton(
+                  child: const Text('Login'),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const sign_up()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()));
+                    
                   },
-                  child: const Text('SIGN UP'),
-                )
+                )),
+                const SizedBox(height: 25),
+                Container(
+                height: 50,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: ElevatedButton(
+                  child: const Text('Sign up'),
+                  onPressed: () {
+                     Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const sign_up()));
+                    
+                  },
+                ))
+               
+              
               ]),
         ));
   }
