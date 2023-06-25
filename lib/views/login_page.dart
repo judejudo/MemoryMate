@@ -106,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                           mainPageRoute, (route) => false);
                     } else {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          verifyEmailRoute, (route) => false);
+                          mainPageRoute, (route) => false);
                     }
                   } on FirebaseAuthException catch (e) {
                     if (e.code == 'user-not-found') {
@@ -140,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                 const Text('Does not have account?'),
                 TextButton(
                   child: const Text(
-                    'Sign in',
+                    'Sign Up',
                     style: TextStyle(fontSize: 20),
                   ),
                   onPressed: () {

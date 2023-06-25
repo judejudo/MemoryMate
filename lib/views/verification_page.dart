@@ -36,7 +36,16 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
                   (route) => false,
                 );
               },
-              child: const Text('Restart'))
+              child: const Text('Restart')),
+              Container(
+                  height: 50,
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: ElevatedButton(
+                      child: const Text('Go back to login'),
+                      onPressed: () async {Navigator.of(context).pushNamedAndRemoveUntil(
+                          loginRoute,
+                          (route) => false);}
+                        ))
         ],
       ),
     );

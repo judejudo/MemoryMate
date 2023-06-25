@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 255, 255, 255)),
         useMaterial3: true,
       ),
-      home: const Splash1(),
+      home: const HomePage(),
       routes: {
         loginRoute: (context) => const LoginPage(),
         signUpRouter: (context) => const sign_up(),
