@@ -4,9 +4,9 @@ import 'package:hello_world/main.dart';
 import 'package:hello_world/views/login_page.dart';
 import 'package:hello_world/views/sign_up.dart';
 
-void main() async {
+void main()  {
   // WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  Firebase.initializeApp();
   runApp(const MyApp());
 }
 
