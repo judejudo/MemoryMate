@@ -1,11 +1,10 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as devtools show log;
-
 import 'package:hello_world/constants/routes.dart';
 import 'package:hello_world/utilities/show_error_dialog.dart';
 
+// ignore: camel_case_types
 class sign_up extends StatefulWidget {
   const sign_up({super.key});
 
@@ -95,7 +94,7 @@ class _sign_upState extends State<sign_up> {
                     ),
                   ),
                 ),
-                SizedBox( height: 20),
+                const SizedBox( height: 20),
                 Container(
                     height: 50,
                     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -133,6 +132,7 @@ class _sign_upState extends State<sign_up> {
                           }
                         })),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     TextButton(
                       child: const Text(
@@ -148,7 +148,6 @@ class _sign_upState extends State<sign_up> {
                       },
                     )
                   ],
-                  mainAxisAlignment: MainAxisAlignment.center,
                 ),
               ],
             )));
