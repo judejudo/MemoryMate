@@ -8,32 +8,19 @@ This project is Flutter based application, designed to improve information retai
 
 You need the following to run the application
 
- - **Flutter installed in PC.**
+ - **Flutter**
 
-Download fro
-
-[Flutter](https://flutter.dev/)
+Download using this link:   [Flutter](https://flutter.dev/)
 
 - **XAMPP**
 
-One can download and install it from teh link below:
-
-[XAMPP](https://www.apachefriends.org/download.html)
+Download using this link: [XAMPP](https://www.apachefriends.org/download.html)
 
 - **Android Studio**
 
-One can download and install it from the link below:
+Download using this link: [Android Studio](https://developer.android.com/studio/install)
 
-[Android Studio](https://developer.android.com/studio/install)
-
-After installation run the following command in terminal. Ensure you are in the flutter directory.
-
-
-```flutter doctor```
-
-### What to expect in the application
-
-This application has:
+### Components of the application
 
 1. Login and register page
 2. Additional user information page
