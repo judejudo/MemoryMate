@@ -58,4 +58,4 @@ flutter build apk --release
 
 ## License
 
-Light is available under the MIT license. See the [LICENSE](https://github.com/judejudo/MemoryMate/edit/main/LICENSE) file.
+Light is available under the MIT license. See the [LICENSE](https://github.com/judejudo/MemoryMate/blob/main/LICENSE) file.
