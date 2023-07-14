@@ -55,3 +55,7 @@ flutter build apk --release
 | [**XML2JSON**](https://pub.dev/packages/xml2json)                      | Convert XML to JSON                           |
 | [**DIO**](https://pub.dev/packages/dio)                                | Network calls and File Download               |
 | [**Iridium Reader**](https://github.com/Mantano/iridium_reader_widget) | Plug and play reader widget for pdfs         |
+
+## License
+
+Light is available under the MIT license. See the [LICENSE](https://github.com/judejudo/MemoryMate/edit/main/LICENSE) file.
