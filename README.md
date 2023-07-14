@@ -24,13 +24,23 @@ A Flutter based application, designed to to enhance memorability through recall 
 - A Xammp server
 
  ## Usage
+ Clone github
 ```
 git clone https://github.com/creatint/light
-flutter packages get
+```
+Install flutter
+```
+flutter version 3.7.2
+```
+Update dependencies
+```
+flutter pub get
+```
+Run project
+```
 flutter run
 flutter build apk --release
 ```
-
 ## 📸 ScreenShots
 | <img src="img/imgs/s1.jpg" width="300" height="500">  | <img src="img/imgs/s4.jpg" width="300" height="500">  |
 | <img src="img/imgs/s7.jpg" width="300" height="500">  | <img src="img/imgs/s5.jpg" width="300" height="500">  |
