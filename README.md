@@ -26,7 +26,7 @@ A Flutter based application, designed to to enhance memorability through recall 
  ## Usage
  Clone github
 ```
-git clone https://github.com/creatint/light
+ https://github.com/judejudo/MemoryMate.git
 ```
 Install flutter
 ```
