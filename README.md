@@ -1,3 +1,4 @@
+ ![](img/logo.png)
 # MemoryMate
 
 ## MemoryMate: Mobile Based Book Reader Application to Enhance Memorability through Recall Prompts .
