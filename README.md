@@ -29,9 +29,17 @@ A Flutter based application, designed to to enhance memorability through recall 
  https://github.com/judejudo/MemoryMate.git
 ```
 Install flutter
-```
-flutter version 3.7.2
-```
+
+Flutter Installation Guide (Windows)
+This guide provides instructions for installing Flutter version 3.7.2 and setting up the Flutter command on Windows.
+
+Installation Steps
+Download Flutter from https://flutter.dev.
+Extract the downloaded ZIP file to a desired location.
+Add the Flutter bin directory to the system's PATH variable.
+Verify the Flutter installation by running flutter doctor.
+Optionally, install Android Studio and the Flutter plugin.
+Start developing Flutter applications.
 Update dependencies
 ```
 flutter pub get
